@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <div class="header">
+      <h1>♠ Blackjack ♥</h1>
+      <div class="money-display">
+        💰 <span id="money-display">$1000</span>
+      </div>
+    </div>
+
+    <div class="game-area">
+      <div class="hand-section">
+        <div class="hand-title">
+          <span>Dealer's Hand</span>
+          <span class="hand-value" id="dealer-score">0</span>
+        </div>
+        <div class="cards-container" id="dealer-cards">
+        </div>
+      </div>
+
+      <div class="hand-section">
+        <div class="hand-title">
+          <span>Your Hand</span>
+          <span class="hand-value" id="player-score">0</span>
+        </div>
+        <div class="cards-container" id="player-cards">
+        </div>
+      </div>
+
+      <div class="message-box" id="message">
+        Place your bet to start!
+      </div>
+
+      <div class="current-bet" id="current-bet" style="display: none;">
+        Current Bet: $0
+      </div>
+
+      <div class="controls">
+        <div id="betting-controls" class="betting-controls">
+          <div class="bet-chip chip-10" data-amount="10">$10</div>
+          <div class="bet-chip chip-25" data-amount="25">$25</div>
+          <div class="bet-chip chip-50" data-amount="50">$50</div>
+          <div class="bet-chip chip-100" data-amount="100">$100</div>
+        </div>
+
+        <div id="game-controls" class="game-controls" style="display: none;">
+          <button id="hit-btn" class="btn btn-primary">Hit</button>
+          <button id="stand-btn" class="btn btn-danger">Stand</button>
+        </div>
+
+        <button id="new-round-btn" class="btn btn-secondary" style="display: none;">
+          New Round
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

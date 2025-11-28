@@ -1,0 +1,375 @@
+/* style.css - Complete styling for Blackjack game */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Main Container */
+.game-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+/* Header Section */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.money-display {
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 25px;
+  border-radius: 10px;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Game Area */
+.game-area {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 900px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hand Section */
+.hand-section {
+  margin-bottom: 40px;
+}
+
+.hand-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.hand-value {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  min-height: 140px;
+  align-items: center;
+}
+
+/* Card Styles */
+.card {
+  width: 100px;
+  height: 140px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: default;
+  animation: dealCard 0.3s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Card Animation */
+@keyframes dealCard {
+  0% {
+    transform: translateY(-100px) rotate(-10deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* Card Colors */
+.card.red {
+  color: #d32f2f;
+}
+
+.card.black {
+  color: #000;
+}
+
+/* Card Corner Values */
+.card-corner {
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.card-corner.top-left {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  text-align: left;
+}
+
+.card-corner.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  transform: rotate(180deg);
+  text-align: left;
+}
+
+/* Card Center Suit */
+.card-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+/* Card Back (Hidden Card) */
+.card-back {
+  background: linear-gradient(
+    45deg,
+    #1a237e 25%,
+    #283593 25%,
+    #283593 50%,
+    #1a237e 50%,
+    #1a237e 75%,
+    #283593 75%
+  );
+  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-pattern {
+  width: 80%;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Message Box */
+.message-box {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-weight: bold;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Message Box Colors for Win/Lose */
+.message-box.win {
+  background: rgba(76, 175, 80, 0.3);
+  border: 2px solid #4caf50;
+}
+
+.message-box.lose {
+  background: rgba(244, 67, 54, 0.3);
+  border: 2px solid #f44336;
+}
+
+.message-box.push {
+  background: rgba(255, 152, 0, 0.3);
+  border: 2px solid #ff9800;
+}
+
+.message-box.error {
+  background: rgba(244, 67, 54, 0.3);
+  animation: shake 0.5s;
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* Current Bet Display */
+.current-bet {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Betting Controls */
+.betting-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Betting Chips */
+.bet-chip {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 3px solid white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.bet-chip:hover {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.bet-chip:active {
+  transform: scale(1.05);
+}
+
+/* Chip Colors */
+.chip-10 {
+  background: radial-gradient(circle at 30% 30%, #ff7043, #ff5252);
+}
+
+.chip-25 {
+  background: radial-gradient(circle at 30% 30%, #66bb6a, #4caf50);
+}
+
+.chip-50 {
+  background: radial-gradient(circle at 30% 30%, #42a5f5, #2196f3);
+}
+
+.chip-100 {
+  background: radial-gradient(circle at 30% 30%, #ab47bc, #9c27b0);
+}
+
+/* Game Controls */
+.game-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button Colors */
+.btn-primary {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #f44336, #da190b);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #da190b, #c41104);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #ff9800, #fb8c00);
+  color: white;
+  padding: 15px 50px;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #fb8c00, #f57c00);
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
